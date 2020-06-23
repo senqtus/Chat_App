@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Chat_App</string>
+    <string name="send_sign">\u2714</string>
+</resources>
