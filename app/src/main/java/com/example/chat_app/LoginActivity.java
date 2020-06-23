@@ -2,6 +2,7 @@ package com.example.chat_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 import com.example.chat_app.file_work.Storage;
 import com.example.chat_app.file_work.StorageImplementation;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
 
     TextView username;
