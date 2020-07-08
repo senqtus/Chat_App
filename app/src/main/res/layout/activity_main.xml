@@ -6,20 +6,40 @@
     android:background="@color/colorPrimary"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    
-    
-    
+
+    <fragment
+        android:name="com.example.chat_app.FragmentAddition"
+        android:id="@+id/fragmentAddition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </fragment>
+
+
+
     <ListView
+        android:id="@+id/contactViewList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
     ></ListView>
 
-    <fragment
+    <Button
+        android:id="@+id/addContactButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/addContactMain"
-        android:layout_gravity="right"
-        ></fragment>
+        android:background="@drawable/roundedbutton"
+        android:text="+"
+        android:textSize="80sp"
+        android:gravity="center">
+    </Button>
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:textSize="10sp"
+        android:background="@color/colorAddChat"
+        android:gravity="center">
+    </Button>
 </LinearLayout>
 
