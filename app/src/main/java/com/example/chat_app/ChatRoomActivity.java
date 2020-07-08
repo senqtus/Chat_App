@@ -54,15 +54,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         contact.setText(dialog);
         getChat();
         fillData();
-        findViewById(R.id.backToMain).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ChatRoomActivity.this, MainActivity.class);
-                intent.putExtra("username", user);
-                startActivity(intent);
-                finish();
-            }
-        });
         findViewById(R.id.addMessageButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

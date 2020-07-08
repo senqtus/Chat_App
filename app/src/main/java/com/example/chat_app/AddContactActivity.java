@@ -43,8 +43,7 @@ public class AddContactActivity extends AppCompatActivity {
                 contactUser = contact.getText().toString();
                 addContact(user, contactUser);
                 addContact(contactUser, user);
-                Intent intent = new Intent(AddContactActivity.this, ChatRoomActivity.class);
-                intent.putExtra("dialog", contact.getText().toString());
+                Intent intent = new Intent(AddContactActivity.this, MainActivity.class);
                 intent.putExtra("username", user);
                 startActivity(intent);
                 finish();
