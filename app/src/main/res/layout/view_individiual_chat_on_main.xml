@@ -15,6 +15,7 @@
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/userLetter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -34,18 +35,14 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:text=""
             android:textColor="@color/colorName"
             android:textSize="30sp"
             android:gravity="center"
-            android:layout_height="50sp"></TextView>
+            android:layout_height="100sp"></TextView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:text=""
-            android:textColor="@color/colorName"
-            android:textSize="20sp"
-            android:layout_height="80sp"></TextView>
+
     </LinearLayout>
 </LinearLayout>
