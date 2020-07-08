@@ -38,6 +38,12 @@ public class GetPopularMovieAsync extends AsyncTask<Void, Void, ArrayList<Movie>
                     String imageUrl = aTags.get(0).attributes().get("src");
                     movie.setImage(imageUrl);
                 }
+
+                aTags = element.getElementsByTag("a");
+                if (aTags.size() > 0) {
+                    String url = aTags.get(0).attributes().get("href");
+                    movie.setURL(url);
+                }
                 arrayList.add(movie);
             }
         } catch (IOException e) {

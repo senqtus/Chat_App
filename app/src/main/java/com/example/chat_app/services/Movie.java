@@ -5,6 +5,7 @@ public class Movie {
 
     private String name;
     private String image;
+    private String url;
 
 
     public String getName() {
@@ -21,5 +22,13 @@ public class Movie {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getURL() {
+        return url;
+    }
+
+    public void setURL(String url) {
+        this.url = url;
     }
 }
