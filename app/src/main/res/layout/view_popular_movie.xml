@@ -8,17 +8,8 @@
 
     <ImageView
         android:id="@+id/movieImage"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"></ImageView>
 
-    <TextView
-        android:id="@+id/movieName"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/colorAddChat"
-        android:text="aq"
-        android:textSize="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </TextView>
 
 </LinearLayout>

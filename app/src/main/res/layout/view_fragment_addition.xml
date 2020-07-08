@@ -10,11 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10dp"
-        android:text="Neeews"
+        android:text="Popular Movies"
         android:textColor="@color/colorAddChat"
 ></TextView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" ></androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

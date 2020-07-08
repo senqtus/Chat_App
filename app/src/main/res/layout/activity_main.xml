@@ -6,6 +6,7 @@
     android:background="@color/colorPrimary"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <fragment
         android:name="com.example.chat_app.FragmentAddition"
         android:id="@+id/fragmentAddition"
@@ -13,8 +14,13 @@
         android:layout_height="wrap_content">
     </fragment>
 
+<!--
+    <ListView
+        android:id="@+id/movies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+    -->
 
-    
     <ListView
         android:id="@+id/contactViewList"
         android:layout_width="match_parent"

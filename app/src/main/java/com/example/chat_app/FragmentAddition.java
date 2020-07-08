@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,9 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentAddition extends Fragment {
+    private static String headURL = "https://www.kinoafisha.ge/";
     private List<Movie> movieList = new ArrayList<>();;
     private MoviesAdapter mAdapter;
     private RecyclerView recyclerView;
+
+
 
     @Nullable
     @Override
@@ -34,12 +38,7 @@ public class FragmentAddition extends Fragment {
         View view = inflater.inflate(R.layout.view_fragment_addition, container, false);
          recyclerView = view.findViewById(R.id.movies);
          getPopularMovies();
-        /*mAdapter = new MoviesAdapter(movieList);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);*/
+        mAdapter = new MoviesAdapter(movieList);
         return view;
     }
 
@@ -49,8 +48,9 @@ public class FragmentAddition extends Fragment {
         GetPopularMovieAsync.Callback callback = new GetPopularMovieAsync.Callback() {
             @Override
             public void onDataReceived(ArrayList<Movie> movies) {
-                mAdapter = new MoviesAdapter(movieList);
                 movieList = movies;
+                mAdapter = new MoviesAdapter(movieList);
+
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView.setLayoutManager(mLayoutManager);
@@ -58,6 +58,7 @@ public class FragmentAddition extends Fragment {
                 recyclerView.setAdapter(mAdapter);
             }
         };
+
         getPopularMovieAsync.setCallback(callback);
         getPopularMovieAsync.execute();
     }
@@ -65,11 +66,9 @@ public class FragmentAddition extends Fragment {
     public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
         private List<Movie> moviesList;
         class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView title;
             ImageView image;
             MyViewHolder(View view) {
                 super(view);
-                title = view.findViewById(R.id.movieName);
                 image = view.findViewById(R.id.movieImage);
             }
         }
@@ -84,16 +83,29 @@ public class FragmentAddition extends Fragment {
             return new MyViewHolder(itemView);
         }
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
             Movie movie = moviesList.get(position);
-            holder.title.setText(movie.getName());
             holder.image.setImageURI(Uri.parse(movie.getImage()));
-            Picasso.get().load(movieList.get(position).getImage()).into(holder.image);
+            Picasso.get().load(movieList.get(position).getImage()).resize(300,300).centerCrop().into(holder.image);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(headURL + movieList.get(position).getURL()));
+                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getContext(), "Not Relevant App found", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
         @Override
         public int getItemCount() {
             return moviesList.size();
         }
     }
+
 
 }

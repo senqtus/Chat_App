@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private static ListView contactListView;
     private static ContactListAdapter contactListAdapter;
     private static ArrayList<Contact> contactList;
-    public static MovieArrayAdapter movieArrayAdapter;
     public static ListView popularMovieList;
     private FragmentAddition fragmentAddition;
 
@@ -53,13 +52,12 @@ public class MainActivity extends AppCompatActivity {
         context = MainActivity.this;
         contactListAdapter = new ContactListAdapter(context, 0, new ArrayList<Contact>());
         contactList = new ArrayList<Contact>();
-        //movieArrayAdapter = new MovieArrayAdapter(context,0, new ArrayList<Movie>());
-        //popularMovieList = findViewById(R.id.movies);
-        //getPopularMovies();
+
+        fragmentAddition = (FragmentAddition) getSupportFragmentManager().findFragmentById(R.id.fragmentAddition);
         getContacts();
         fillData();
 
-        fragmentAddition = (FragmentAddition) getSupportFragmentManager().findFragmentById(R.id.fragmentAddition);
+
 
 
         findViewById(R.id.addContactButton).setOnClickListener(new View.OnClickListener() {
@@ -90,19 +88,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getPopularMovies()
-    {
-        GetPopularMovieAsync getPopularMovieAsync = new GetPopularMovieAsync();
-        GetPopularMovieAsync.Callback callback = new GetPopularMovieAsync.Callback() {
-            @Override
-            public void onDataReceived(ArrayList<Movie> movies) {
-                popularMovieList.setAdapter(movieArrayAdapter);
-                movieArrayAdapter.addAll(movies);
-            }
-        };
-        getPopularMovieAsync.setCallback(callback);
-        getPopularMovieAsync.execute();
-    }
 
 
     private static void getContacts()
@@ -153,28 +138,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    class MovieArrayAdapter extends ArrayAdapter<Movie> {
-
-        private Context context;
-
-        public MovieArrayAdapter(Context context, int resource, List<Movie> objects) {
-            super(context, resource, objects);
-            this.context = context;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater) context
-                    .getSystemService(LAYOUT_INFLATER_SERVICE);
-            View view = layoutInflater.inflate(R.layout.view_popular_movie, parent, false);
-            Movie currentMovie = getItem(position);
-            TextView textView = view.findViewById(R.id.movieName);
-            textView.setText(currentMovie.getName());
-            ImageView imageView = view.findViewById(R.id.movieImage);
-            Picasso.get().load(currentMovie.getImage()).into(imageView);
-            return view;
-        }
-    }
 
 }
